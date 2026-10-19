@@ -8,7 +8,7 @@
   aliases: 
 CMD*/
 
-let queryId = message;
+let queryId = message ? message.trim() : "";
 
 if (!queryId) {
   Bot.sendMessage("Koi input nahi mila. /start karein.");
@@ -17,13 +17,14 @@ if (!queryId) {
 
 Bot.sendMessage("Processing request for ID: " + queryId + "...");
 
-// Apni API ka base URL set karein jisme query parameter pass hota hai
 let baseUrl = "https://jgvicvhgfwcfndgookul.supabase.co/functions/v1/bot-api?key=Toxic&tool=tgnum&term=";
-
 let fullUrl = baseUrl + encodeURIComponent(queryId);
 
 HTTP.get({
   url: fullUrl,
+  headers: {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+  },
   success: "/onApiResponse",
   error: "/onApiError"
 });
