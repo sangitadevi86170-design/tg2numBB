@@ -1,0 +1,8 @@
+{
+  "bb_version": "1.0",
+  "name": "MyBBBot",
+  "description": "Bots.Business GitHub import template",
+  "git": {
+    "branch": "main"
+  }
+}
