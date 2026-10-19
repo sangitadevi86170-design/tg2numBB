@@ -1,13 +1,11 @@
 /*CMD
   command: /start
-  help: 
+  help: Start the bot
   need_reply: false
-  auto_retry_buy: false
-  sync_script: false
-  res_var: 
-  folder: 
-  answer: Hello! Welcome to the bot. Use /fetch to test API request.
+  auto_retry_time: 
+  answer: Welcome! Send a public Chat ID or username (e.g. @channelname) to inspect:
   keyboard: 
   aliases: 
-  group: 
 CMD*/
+
+Bot.runCommand("/onChatInput");
