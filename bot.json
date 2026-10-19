@@ -1,8 +1,5 @@
 {
-  "bb_version": "1.0",
-  "name": "MyBBBot",
-  "description": "Bots.Business GitHub import template",
-  "git": {
-    "branch": "main"
-  }
+  "bb_sync_version": "1.0",
+  "name": "tg2numBB",
+  "git_remote": "https://github.com/sangitadevi86170-design/tg2numBB.git"
 }
