@@ -538,7 +538,6 @@ async def my_chat_member_handler(update: Update, context: ContextTypes.DEFAULT_T
                     f"1. Group me kam se kam *{min_m}+ Real Members* hona zaroori hai.\n"
                     f"2. Unlimited Search sirf **Group Owner & Admins** ke liye active hai.\n"
                     f"3. Seedha koi bhi 9-10 digit Telegram ID is chat me send karein lookup ke liye!\n\n"
-                    f"🛡️ *aaᴘᴋa ᴅaᴛa saғᴇ, aaᴘᴋa ʙʟasᴛ ғasᴛ — ᴘrᴏᴛᴇᴄᴛᴇᴅ usᴇrs ᴋɪ saғᴇᴛʏ ʜaᴍᴇsʜa #1 ᴘrɪᴏrɪᴛʏ ʜaɪ*"
                 ),
                 parse_mode=ParseMode.MARKDOWN
             )
@@ -731,7 +730,6 @@ async def start_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
         "  🏛 *ᴛɢ2ɴᴜᴍ ᴇɴᴛᴇʀᴘʀɪsᴇ ɪɴᴛᴇʟʟɪɢᴇɴᴄᴇ* \n"
         "  _aᴅᴠaɴᴄᴇᴅ ᴏsɪɴᴛ • ɪᴅᴇɴᴛɪᴛʏ ʟᴏᴏᴋᴜᴘ ᴇɴɢɪɴᴇ_\n"
         "╚══════════════════════════════════════╝\n\n"
-        "🛡️ *aaᴘᴋa ᴅaᴛa saғᴇ, aaᴘᴋa ʙʟasᴛ ғasᴛ — ᴘrᴏᴛᴇᴄᴛᴇᴅ usᴇrs ᴋɪ saғᴇᴛʏ ʜaᴍᴇsʜa #1 ᴘrɪᴏrɪᴛʏ ʜaɪ*\n\n"
         "🔹 *sᴇᴄᴜrɪᴛʏ ᴛɪᴇr:* `ᴠᴇrɪғɪᴇᴅ sᴛaɴᴅarᴅ`\n"
         "🔹 *aᴄᴛɪᴠᴇ aʟʟᴏᴄaᴛɪᴏɴ:* `1 ɪɴɪᴛɪaʟ ᴄrᴇᴅɪᴛ`\n"
         f"🔹 *rᴇғᴇrraʟ rᴇᴡarᴅ:* `+{ref_rew} ᴄrᴇᴅɪᴛs / ғrɪᴇɴᴅ`\n"
@@ -1432,7 +1430,6 @@ async def callback_query_handler(update: Update, context: ContextTypes.DEFAULT_T
                         "━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n"
                         "Bot Owner has restored Unlimited Free Search access for this group.\n"
                         "Group Owner and Admins can now resume searches!\n\n"
-                        "🛡️ *aaᴘᴋa ᴅaᴛa saғᴇ, aaᴘᴋa ʙʟasᴛ ғasᴛ — ᴘrᴏᴛᴇᴄᴛᴇᴅ usᴇrs ᴋɪ saғᴇᴛʏ ʜaᴍᴇsʜa #1 ᴘrɪᴏrɪᴛʏ ʜaɪ*"
                     ),
                     parse_mode=ParseMode.MARKDOWN
                 )
@@ -1858,14 +1855,12 @@ async def handle_text(update: Update, context: ContextTypes.DEFAULT_TYPE):
             code = state["code"]
             creds = state["credits"]
             create_promo_code(code=code, credits=creds, max_uses=max_uses)
-            del ADMIN_STATES[user.id]
             await update.message.reply_text(
                 "🎉 *PROMO CODE CREATED SUCCESSFULLY!*\n"
                 "━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n"
                 f"• *Code:* `{code}`\n"
                 f"• *Credits:* `+{creds} 💎`\n"
-                f"• *Max Claims:* `{max_uses}` Users\n\n"
-                "🛡️ *aaᴘᴋa ᴅaᴛa saғᴇ, aaᴘᴋa ʙʟasᴛ ғasᴛ — ᴘrᴏᴛᴇᴄᴛᴇᴅ usᴇrs ᴋɪ saғᴇᴛʏ ʜaᴍᴇsʜa #1 ᴘrɪᴏrɪᴛʏ ʜaɪ*",
+                f"• *Max Claims:* `{max_uses}` Users",
                 parse_mode=ParseMode.MARKDOWN
             )
             await show_promo_admin_menu(update.message, is_callback=False)
@@ -1919,7 +1914,6 @@ async def handle_text(update: Update, context: ContextTypes.DEFAULT_TYPE):
                         "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n"
                         f"• *Reason:* {ban_reason}\n\n"
                         "Unlimited free search facility has been suspended for this group until further review.\n\n"
-                        "🛡️ *aaᴘᴋa ᴅaᴛa saғᴇ, aaᴘᴋa ʙʟasᴛ ғasᴛ — ᴘrᴏᴛᴇᴄᴛᴇᴅ usᴇrs ᴋɪ saғᴇᴛʏ ʜaᴍᴇsʜa #1 ᴘrɪᴏrɪᴛʏ ʜaɪ*"
                     ),
                     parse_mode=ParseMode.MARKDOWN
                 )
@@ -1994,7 +1988,6 @@ async def handle_text(update: Update, context: ContextTypes.DEFAULT_TYPE):
             success, creds_given, res_msg = redeem_promo_code_for_user(user.id, text)
             full_reply = (
                 f"{res_msg}\n\n"
-                "🛡️ *aaᴘᴋa ᴅaᴛa saғᴇ, aaᴘᴋa ʙʟasᴛ ғasᴛ — ᴘrᴏᴛᴇᴄᴛᴇᴅ usᴇrs ᴋɪ saғᴇᴛʏ ʜaᴍᴇsʜa #1 ᴘrɪᴏrɪᴛʏ ʜaɪ*"
             )
             await update.message.reply_text(full_reply, parse_mode=ParseMode.MARKDOWN, reply_markup=get_main_keyboard(is_owner=(user.id == ADMIN_ID)))
             return
@@ -2006,7 +1999,6 @@ async def handle_text(update: Update, context: ContextTypes.DEFAULT_TYPE):
         prompt_text = (
             "🎟️ *rᴇᴅᴇᴇᴍ ᴘrᴏᴍᴏ ᴄᴏᴅᴇ*\n"
             "━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n"
-            "🛡️ *aaᴘᴋa ᴅaᴛa saғᴇ, aaᴘᴋa ʙʟasᴛ ғasᴛ — ᴘrᴏᴛᴇᴄᴛᴇᴅ usᴇrs ᴋɪ saғᴇᴛʏ ʜaᴍᴇsʜa #1 ᴘrɪᴏrɪᴛʏ ʜaɪ*\n\n"
             "Kripya apna **Promo / Redeem Code** yahan chat me type karke bhejein:\n\n"
             f"⚠️ *Notice:* Redeem code use karne ke liye kam se kam *{min_ref} Verified Referrals* hona anivarya hai.\n\n"
             "_(Type karein apna code ya cancel karne ke liye 'Cancel' bhejein)_"
@@ -2024,7 +2016,6 @@ async def handle_text(update: Update, context: ContextTypes.DEFAULT_TYPE):
         terms_msg = (
             "🚀 *ᴜɴʟɪᴍɪᴛᴇᴅ ғrᴇᴇ sᴇarᴄʜ*\n"
             "━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n"
-            "🛡️ *aaᴘᴋa ᴅaᴛa saғᴇ, aaᴘᴋa ʙʟasᴛ ғasᴛ — ᴘrᴏᴛᴇᴄᴛᴇᴅ usᴇrs ᴋɪ saғᴇᴛʏ ʜaᴍᴇsʜa #1 ᴘrɪᴏrɪᴛʏ ʜaɪ*\n\n"
             "Apne group me Unlimited Free Search chalane ke liye:\n"
             f"• Group me kam se kam *{min_m}+ Real Members* hone chahiye.\n"
             "• Unlimited Search sirf **Group Owner & Admins** ke liye active hogi.\n"
@@ -2056,7 +2047,6 @@ async def handle_text(update: Update, context: ContextTypes.DEFAULT_TYPE):
             "╔═══════════════════════════════════╗\n"
             "   👤 *usᴇr ɪᴅᴇɴᴛɪᴛʏ & ǫᴜᴏᴛa ᴘrᴏғɪʟᴇ* \n"
             "╚═══════════════════════════════════╝\n\n"
-            "🛡️ *aaᴘᴋa ᴅaᴛa saғᴇ, aaᴘᴋa ʙʟasᴛ ғasᴛ — ᴘrᴏᴛᴇᴄᴛᴇᴅ usᴇrs ᴋɪ saғᴇᴛʏ ʜaᴍᴇsʜa #1 ᴘrɪᴏrɪᴛʏ ʜaɪ*\n\n"
             "┌── 🏷 *aᴄᴄᴏᴜɴᴛ ɪᴅᴇɴᴛɪғɪᴇrs*\n"
             f"│ • *ɴaᴍᴇ:* {user.first_name}\n"
             f"│ • *ᴛᴇʟᴇɢraᴍ ɪᴅ:* `{user.id}`\n"
@@ -2088,7 +2078,6 @@ async def handle_text(update: Update, context: ContextTypes.DEFAULT_TYPE):
         refer_text = (
             "🎁 *rᴇғᴇr & ᴇarɴ ғrᴇᴇ ᴄrᴇᴅɪᴛs*\n"
             "━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n"
-            "🛡️ *aaᴘᴋa ᴅaᴛa saғᴇ, aaᴘᴋa ʙʟasᴛ ғasᴛ — ᴘrᴏᴛᴇᴄᴛᴇᴅ usᴇrs ᴋɪ saғᴇᴛʏ ʜaᴍᴇsʜa #1 ᴘrɪᴏrɪᴛʏ ʜaɪ*\n\n"
             "Har dost ko invite karne par aapko milenge:\n"
             f"👉 *{ref_bonus_setting} ғrᴇᴇ sᴇarᴄʜ ᴄrᴇᴅɪᴛs!*\n\n"
             f"👥 *ᴛᴏᴛaʟ rᴇғᴇrrᴇᴅ:* `{total_refs}` ғrɪᴇɴᴅs\n"
@@ -2124,7 +2113,6 @@ async def handle_text(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await update.message.reply_text(
             "🛰 *sᴇarᴄʜ ᴛᴇʟᴇɢraᴍ ɴᴜᴍᴇrɪᴄaʟ ɪᴅ*\n"
             "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n"
-            "🛡️ *aaᴘᴋa ᴅaᴛa saғᴇ, aaᴘᴋa ʙʟasᴛ ғasᴛ — ᴘrᴏᴛᴇᴄᴛᴇᴅ usᴇrs ᴋɪ saғᴇᴛʏ ʜaᴍᴇsʜa #1 ᴘrɪᴏrɪᴛʏ ʜaɪ*\n\n"
             "Please send the numerical user ID to initiate lookup:\n\n"
             "• *Format:* `XXXXXXXXXX` (e.g., `1234567890`)",
             parse_mode=ParseMode.MARKDOWN
@@ -2144,7 +2132,6 @@ async def handle_text(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
         await update.message.reply_text(
             f"📊 *ʙᴏᴛ ʟɪᴠᴇ sᴛaᴛɪsᴛɪᴄs:*\n\n"
-            "🛡️ *aaᴘᴋa ᴅaᴛa saғᴇ, aaᴘᴋa ʙʟasᴛ ғasᴛ — ᴘrᴏᴛᴇᴄᴛᴇᴅ usᴇrs ᴋɪ saғᴇᴛʏ ʜaᴍᴇsʜa #1 ᴘrɪᴏrɪᴛʏ ʜaɪ*\n\n"
             f"• *Total Users:* `{total_users}`\n"
             f"• *Total Searches Processed:* `{total_searches}`\n"
             f"• *System Status:* `Online 🟢`",
@@ -2158,7 +2145,6 @@ async def handle_text(update: Update, context: ContextTypes.DEFAULT_TYPE):
         how_to_text = (
             "ℹ️ *ʜᴏᴡ ᴛᴏ ᴜsᴇ ᴛʜɪs ʙᴏᴛ*\n"
             "━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n"
-            "🛡️ *aaᴘᴋa ᴅaᴛa saғᴇ, aaᴘᴋa ʙʟasᴛ ғasᴛ — ᴘrᴏᴛᴇᴄᴛᴇᴅ usᴇrs ᴋɪ saғᴇᴛʏ ʜaᴍᴇsʜa #1 ᴘrɪᴏrɪᴛʏ ʜaɪ*\n\n"
             "1️⃣ *Telegram ID Enter Karein:* Koi bhi 9-10 digit Telegram ID send karein.\n"
             "2️⃣ *Phone Number & Intelligence details:* Bot automatically database se report nikaal kar send karega.\n"
             "3️⃣ *Refund Policy:* Agar koi number nahi milta to aapka Credit deduct nahi hoga (Refund ho jayega).\n"
@@ -2177,7 +2163,6 @@ async def handle_text(update: Update, context: ContextTypes.DEFAULT_TYPE):
         ])
         await update.message.reply_text(
             "📞 *24/7 ᴄᴜsᴛᴏᴍᴇr sᴜᴘᴘᴏrᴛ*\n\n"
-            "🛡️ *aaᴘᴋa ᴅaᴛa saғᴇ, aaᴘᴋa ʙʟasᴛ ғasᴛ — ᴘrᴏᴛᴇᴄᴛᴇᴅ usᴇrs ᴋɪ saғᴇᴛʏ ʜaᴍᴇsʜa #1 ᴘrɪᴏrɪᴛʏ ʜaɪ*\n\n"
             "Kisi bhi problem, inquiry, ya VIP bulk credit purchase ke liye support admin se contact karein:\n"
             f"👉 *Support Handle:* @{sup_clean}",
             reply_markup=sup_kb,
@@ -2287,8 +2272,7 @@ async def process_search_query(update: Update, context: ContextTypes.DEFAULT_TYP
         if g_data and g_data.get("is_banned") == 1:
             ban_reason = g_data.get("ban_reason") or "Unlimited search suspended for this group."
             await update.message.reply_text(
-                f"🚫 *GROUP ACCESS RESTRICTED*\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n{ban_reason}\n\n"
-                "🛡️ *aaᴘᴋa ᴅaᴛa saғᴇ, aaᴘᴋa ʙʟasᴛ ғasᴛ — ᴘrᴏᴛᴇᴄᴛᴇᴅ usᴇrs ᴋɪ saғᴇᴛʏ ʜaᴍᴇsʜa #1 ᴘrɪᴏrɪᴛʏ ʜaɪ*",
+                f"🚫 *GROUP ACCESS RESTRICTED*\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n{ban_reason}",
                 parse_mode=ParseMode.MARKDOWN
             )
             return
@@ -2303,8 +2287,7 @@ async def process_search_query(update: Update, context: ContextTypes.DEFAULT_TYP
             await update.message.reply_text(
                 "⚠️ *INSUFFICIENT GROUP MEMBERS*\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n"
                 f"Group me Unlimited Free Search unlock karne ke liye kam se kam *{min_m}+ Real Members* hone chahiye.\n"
-                f"• Current Members: `{m_count}`\n\n"
-                "🛡️ *aaᴘᴋa ᴅaᴛa saғᴇ, aaᴘᴋa ʙʟasᴛ ғasᴛ — ᴘrᴏᴛᴇᴄᴛᴇᴅ usᴇrs ᴋɪ saғᴇᴛʏ ʜaᴍᴇsʜa #1 ᴘrɪᴏrɪᴛʏ ʜaɪ*",
+                f"• Current Members: `{m_count}`",
                 parse_mode=ParseMode.MARKDOWN
             )
             return
@@ -2322,8 +2305,7 @@ async def process_search_query(update: Update, context: ContextTypes.DEFAULT_TYP
             await update.message.reply_text(
                 "🔒 *ADMIN PRIVILEGE ONLY*\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n"
                 "Group me Unlimited Free Search facility **sirf Group Owner aur Admins** ke liye active hai!\n"
-                "Aam members bot ko personal chat me refer karke free credits se use karein.\n\n"
-                "🛡️ *aaᴘᴋa ᴅaᴛa saғᴇ, aaᴘᴋa ʙʟasᴛ ғasᴛ — ᴘrᴏᴛᴇᴄᴛᴇᴅ usᴇrs ᴋɪ saғᴇᴛʏ ʜaᴍᴇsʜa #1 ᴘrɪᴏrɪᴛʏ ʜaɪ*",
+                "Aam members bot ko personal chat me refer karke free credits se use karein.",
                 parse_mode=ParseMode.MARKDOWN
             )
             return
@@ -2411,7 +2393,6 @@ async def process_search_query(update: Update, context: ContextTypes.DEFAULT_TYP
                 "╭━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╮\n"
                 "  📡 *ᴛᴇʟᴇɢraᴍ ɪɴᴛᴇʟʟɪɢᴇɴᴄᴇ rᴇᴘᴏrᴛ*\n"
                 "╰━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╯\n\n"
-                "🛡️ *aaᴘᴋa ᴅaᴛa saғᴇ, aaᴘᴋa ʙʟasᴛ ғasᴛ — ᴘrᴏᴛᴇᴄᴛᴇᴅ usᴇrs ᴋɪ saғᴇᴛʏ ʜaᴍᴇsʜa #1 ᴘrɪᴏrɪᴛʏ ʜaɪ*\n\n"
                 "┌── 👤 *ɪᴅᴇɴᴛɪᴛʏ ᴅᴏssɪᴇr*\n"
                 f"│ • *ᴛᴇʟᴇɢraᴍ ɪᴅ*   : `{tg_id}`\n"
                 f"│ • *ᴘʜᴏɴᴇ ɴᴜᴍʙᴇr*  : `{phone}`\n"
@@ -2677,7 +2658,6 @@ async def show_referrer_details(bot, chat_id, referrer_id: int, edit_message=Non
         "╔══════════════════════════════════════╗\n"
         "   🏆 *REFERRAL TREE & NETWORK DOSSIER* \n"
         "╚══════════════════════════════════════╝\n\n"
-        "🛡️ *aaᴘᴋa ᴅaᴛa saғᴇ, aaᴘᴋa ʙʟasᴛ ғasᴛ — ᴘrᴏᴛᴇᴄᴛᴇᴅ usᴇrs ᴋɪ saғᴇᴛʏ ʜaᴍᴇsʜa #1 ᴘrɪᴏrɪᴛʏ ʜaɪ*\n\n"
         f"👑 *REFERRER PROFILE:*\n"
         f"• *User:* {ref_link}\n"
         f"• *Telegram ID:* `{referrer_id}`\n"
@@ -2730,7 +2710,6 @@ async def top_referrers_cmd(update: Update, context: ContextTypes.DEFAULT_TYPE):
     msg = (
         "🏆 *TOP REFERRERS LEADERBOARD*\n"
         "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n"
-        "🛡️ *aaᴘᴋa ᴅaᴛa saғᴇ, aaᴘᴋa ʙʟasᴛ ғasᴛ — ᴘrᴏᴛᴇᴄᴛᴇᴅ usᴇrs ᴋɪ saғᴇᴛʏ ʜaᴍᴇsʜa #1 ᴘrɪᴏrɪᴛʏ ʜaɪ*\n\n"
     )
 
     if not rows:
