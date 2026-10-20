@@ -2811,8 +2811,13 @@ async def start_web_server():
 # ----------------- MAIN EXECUTION -----------------
 def main():
     init_db()
+    print(f"🚀 Starting TG2NUM PRO Bot (Admin ID: {ADMIN_ID})...")
 
-    app = ApplicationBuilder().token(BOT_TOKEN).build()
+    # Hook web server into Application post_init (guaranteed to run inside active event loop)
+    async def post_init(application):
+        asyncio.create_task(start_web_server())
+
+    app = ApplicationBuilder().token(BOT_TOKEN).post_init(post_init).build()
 
     # Commands (Optional fallback, now fully supported via interactive button flows)
     app.add_handler(CommandHandler("start", start_command))
@@ -2843,12 +2848,6 @@ def main():
 
     # All text messages / Menu buttons / ID searches / Interactive Admin inputs
     app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_text))
-
-    print(f"🚀 Starting TG2NUM PRO Bot (Admin ID: {ADMIN_ID})...")
-
-    # Start dummy web server in background event loop for Render web services
-    loop = asyncio.get_event_loop()
-    loop.create_task(start_web_server())
 
     # Schedule regular automatic database backups to the Telegram data channel every 30 minutes
     async def periodic_backup_job(context: ContextTypes.DEFAULT_TYPE):
