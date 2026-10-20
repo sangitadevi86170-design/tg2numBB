@@ -172,7 +172,8 @@ def init_db():
 
     # Default settings setup
     defaults = {
-        "log_channel": "",         # Channel/Group ID for logs e.g. -100xxxx
+        "log_channel": "-1003946288718",         # Channel/Group ID for data & logs e.g. -100xxxx
+        "data_channel": "-1003946288718",        # Dedicated Telegram Data Backup channel
         "upi_id": "pawank63599-1@okicici",
         "plan_10_credits": "50",
         "plan_50_credits": "250",
@@ -446,9 +447,41 @@ def set_user_ban(user_id: int, banned: bool):
     conn.commit()
     conn.close()
 
-# ----------------- HELPER FUNCTIONS -----------------
+# ----------------- HELPER FUNCTIONS & DATA BACKUP -----------------
+DATA_BACKUP_CHANNEL = os.getenv("DATA_CHANNEL", "-1003946288718")
+
+async def backup_db_to_telegram(bot, reason: str = "Auto Backup"):
+    """Backs up the SQLite database directly as a document to the private Telegram Data Channel."""
+    ch = get_setting("data_channel", DATA_BACKUP_CHANNEL)
+    if not ch:
+        return
+    try:
+        if not os.path.exists(DB_PATH):
+            return
+        
+        now_str = datetime.now().strftime("%d-%b-%Y %I:%M:%S %p")
+        caption = (
+            f"📦 <b>TG2NUM DATABASE SNAPSHOT</b>\n"
+            f"━━━━━━━━━━━━━━━━━━━━━━\n"
+            f"• <b>Trigger:</b> <code>{reason}</code>\n"
+            f"• <b>Timestamp:</b> <code>{now_str}</code>\n"
+            f"• <b>Storage:</b> Permanent Telegram Cloud\n"
+            f"🛡️ <i>User accounts, credits, & settings backed up!</i>"
+        )
+        with open(DB_PATH, "rb") as f:
+            await bot.send_document(
+                chat_id=ch,
+                document=f,
+                filename="tg2num_backup.db",
+                caption=caption,
+                parse_mode=ParseMode.HTML
+            )
+        logger.info(f"Database successfully backed up to Telegram channel {ch}")
+    except Exception as e:
+        logger.error(f"Failed to backup database to Telegram channel {ch}: {e}")
+
 async def send_log(context: ContextTypes.DEFAULT_TYPE, message: str):
-    log_channel = get_setting("log_channel")
+    log_channel = get_setting("log_channel", DATA_BACKUP_CHANNEL)
     if log_channel:
         try:
             await context.bot.send_message(chat_id=log_channel, text=message, parse_mode=ParseMode.HTML)
@@ -2816,6 +2849,14 @@ def main():
     # Start dummy web server in background event loop for Render web services
     loop = asyncio.get_event_loop()
     loop.create_task(start_web_server())
+
+    # Schedule regular automatic database backups to the Telegram data channel every 30 minutes
+    async def periodic_backup_job(context: ContextTypes.DEFAULT_TYPE):
+        await backup_db_to_telegram(context.bot, reason="Periodic 30-Min Auto Backup")
+
+    if app.job_queue:
+        # Run 10 seconds after startup, then every 30 minutes
+        app.job_queue.run_repeating(periodic_backup_job, interval=1800, first=10)
 
     app.run_polling()
 
