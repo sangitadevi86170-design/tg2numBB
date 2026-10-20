@@ -2438,18 +2438,17 @@ async def process_search_query(update: Update, context: ContextTypes.DEFAULT_TYP
             return
 
         if isinstance(res, dict) and res.get("raw"):
-            raw_text = res["raw"]
-            if "Error" in raw_text or "Timed out" in raw_text:
+            raw_text = str(res["raw"])
+            # Strict safety guard: Never show error, timeouts, API endpoints, or URLs to the user
+            if any(err_word in raw_text.lower() for err_word in ["error", "timed out", "http", "supabase", "function", "token", "key="]):
                 if should_deduct_credit:
                     update_user_credits(user.id, 1, is_usage=False)
-                await status_msg.edit_text("⚠️ Server busy hai. Kripya dobara try karein.")
+                await status_msg.edit_text("❌ Is ID ka koi record nahi mila.")
                 return
 
             cleaned_lines = []
             for line in raw_text.splitlines():
-                if "DATA SOURCE" in line or "PRIVATE SECURE DB" in line:
-                    continue
-                if "Powered by" in line or "Your_father_786k" in line:
+                if any(bad in line for bad in ["DATA SOURCE", "PRIVATE SECURE DB", "Powered by", "Your_father_786k", "http", "supabase"]):
                     continue
                 cleaned_lines.append(line)
             clean_output = "\n".join(cleaned_lines).strip()
@@ -2457,7 +2456,7 @@ async def process_search_query(update: Update, context: ContextTypes.DEFAULT_TYP
                 del_kb = InlineKeyboardMarkup([[InlineKeyboardButton("🗑 Delete Result", callback_data="del_res")]])
                 await status_msg.delete()
                 await update.message.reply_text(clean_output, reply_markup=del_kb)
-                await send_log(context, f"🔍 <b>Search Success (Raw):</b>\n• User: {user.mention_html()}\n• Query: <code>{query_id}</code>")
+                await send_log(context, f"🔍 <b>Search Success:</b>\n• User: {user.mention_html()}\n• Query: <code>{query_id}</code>")
                 return
 
         if should_deduct_credit:
@@ -2465,10 +2464,10 @@ async def process_search_query(update: Update, context: ContextTypes.DEFAULT_TYP
         await status_msg.edit_text("❌ Is ID ka koi record nahi mila.")
 
     except Exception as e:
-        logger.error(f"Search error: {e}")
+        logger.error(f"Search internal exception: {e}")
         if should_deduct_credit:
             update_user_credits(user.id, 1, is_usage=False)
-        await status_msg.edit_text("⚠️ Server response nahi de raha hai.")
+        await status_msg.edit_text("❌ Is ID ka koi record nahi mila.")
 
 # ----------------- ADMIN COMMANDS -----------------
 def is_admin(user_id: int) -> bool:
