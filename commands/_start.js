@@ -95,7 +95,8 @@ var welcome = "╔════════════════════�
 var buttons = [
   ["👤 My Profile", "🎁 Refer & Earn"],
   ["🎁 Daily Reward", "🎟️ Redeem Code"],
-  ["💎 Buy Credits", "📞 Support"]
+  ["🚀 Unlimited Free Search", "💎 Buy Credits"],
+  ["📞 Support"]
 ];
 
 if (userId == ADMIN_ID) {
