@@ -1753,11 +1753,32 @@ async def handle_text(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
         # 10. Multi Force Channels Addition Flows
         elif action == "fch_add_public":
-            ch = text if text.startswith("@") else f"@{text}"
-            link = f"https://t.me/{ch.replace('@', '')}"
-            add_force_channel(name=ch, chat_id=ch, invite_link=link, channel_type="public")
+            ch = text.strip()
+            if not ch.startswith("@") and not ch.startswith("-100"):
+                ch = f"@{ch}"
+            
+            # Auto-resolve username into real Chat ID and Channel Title via Telegram API
+            try:
+                chat_obj = await context.bot.get_chat(ch)
+                resolved_chat_id = str(chat_obj.id)
+                ch_title = chat_obj.title or ch
+                link = f"https://t.me/{chat_obj.username}" if chat_obj.username else (f"https://t.me/{ch.replace('@', '')}")
+            except Exception as e:
+                resolved_chat_id = ch
+                ch_title = ch
+                link = f"https://t.me/{ch.replace('@', '')}"
+                logger.warning(f"Could not auto-fetch chat ID for {ch}: {e}")
+
+            add_force_channel(name=ch_title, chat_id=resolved_chat_id, invite_link=link, channel_type="public")
             del ADMIN_STATES[user.id]
-            await update.message.reply_text(f"✅ *Public Force Channel Added:*\n• Channel: `{ch}`\n• Link: `{link}`\n• Mode: `PUBLIC`", parse_mode=ParseMode.MARKDOWN)
+            await update.message.reply_text(
+                f"✅ *Public Force Channel Connected!*\n"
+                f"• Title: *{ch_title}*\n"
+                f"• Auto Chat ID: `{resolved_chat_id}`\n"
+                f"• Link: `{link}`\n"
+                f"• Mode: `PUBLIC`",
+                parse_mode=ParseMode.MARKDOWN
+            )
             await show_force_channels_admin_menu(update.message, is_callback=False)
             return
 
