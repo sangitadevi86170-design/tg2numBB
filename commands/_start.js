@@ -30,7 +30,8 @@ if (Bot.getProperty("plan_100") == null) {
 }
 
 // User ban check
-if (User.getProperty("is_banned")) {
+var isBannedGlobal = Bot.getProperty("banned_" + userId);
+if (User.getProperty("is_banned") || isBannedGlobal) {
   Bot.sendMessage("🚫 *Your account has been suspended by administration.*");
   return;
 }

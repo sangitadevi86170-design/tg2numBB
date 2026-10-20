@@ -10,7 +10,8 @@ var ADMIN_ID = 8710308658;
 var userId = user.telegramid;
 
 // Check ban
-if (User.getProperty("is_banned")) {
+var isBannedGlobal = Bot.getProperty("banned_" + userId);
+if (User.getProperty("is_banned") || isBannedGlobal) {
   Bot.sendMessage("🚫 *Your account is banned.*");
   return;
 }
